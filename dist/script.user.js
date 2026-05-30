@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.0
+// @version      1.1.1
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @run-at document-idle
@@ -12,7 +12,7 @@
 
 (function () {
     'use strict';
-    const log = (msg) => console.log(`[AE-${VERSION}] ${msg}`);
+    const log = (msg) => console.log(`[AIDS] ${msg}`);
     log("loaded AIDS");
 
     function isCorrectPage() {

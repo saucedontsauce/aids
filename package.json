@@ -1,5 +1,6 @@
 {
     "scripts": {
         "build": "node build-meta.js"
-    }
+    },
+    "license": "UNLICENSED"
 }
