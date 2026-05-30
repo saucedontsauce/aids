@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.0.6
+// @version      1.0.7
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @downloadURL  https://raw.githubusercontent.com/saucedontsauce/aids/main/dist/script.user.js
