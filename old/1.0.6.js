@@ -1,19 +1,20 @@
 // ==UserScript==
-// @name         Armoury Improved Display Script
-// @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.1
-// @description  Torn Armoury Enhancement Tool
+// @name         Armoury Enhancer
+// @description A Tool that enhances faction armoury
+// @version 1.0.4
 // @match        https://www.torn.com/factions.php*
 // @run-at document-idle
-// @downloadURL  https://raw.githubusercontent.com/saucedontsauce/aids/main/dist/script.user.js
-// @updateURL    https://raw.githubusercontent.com/saucedontsauce/aids/main/dist/script.meta.js
-// @license copyright Adam Auckland-Blaydes
 // ==/UserScript==
 
 (function () {
     'use strict';
-    const log = (msg) => console.log(`[AIDS] ${msg}`);
-    log("loaded AIDS");
+
+    const VERSION = '1.0.4';
+
+    const log = (msg) => {
+        console.log(`[AE-${VERSION}] ${msg}`);
+    };
+    log("AE LOADED");
 
     function isCorrectPage() {
         const hash = window.location.hash;
