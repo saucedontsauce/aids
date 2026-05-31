@@ -1,11 +1,15 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.1
+// @version      1.1.3
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
-// @run-at document-idle
-// @downloadURL  https://raw.githubusercontent.com/saucedontsauce/aids/main/dist/script.user.js
-// @updateURL    https://raw.githubusercontent.com/saucedontsauce/aids/main/dist/script.meta.js
-// @license copyright Adam Auckland-Blaydes
+// @license      copyright Adam Auckland-Blaydes
+//
+// @grant        GM_info
+// @grant        GM.info
+// @grant        GMforPDA
+//
+// @downloadURL  https://update.greasyfork.org/scripts/580450/Armoury%20Improved%20Display%20Script.user.js
+// @updateURL    https://update.greasyfork.org/scripts/580450/Armoury%20Improved%20Display%20Script.meta.js
 // ==/UserScript==
