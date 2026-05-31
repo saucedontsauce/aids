@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.4
+// @version      1.1.5
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @license      copyright Adam Auckland-Blaydes
@@ -99,6 +99,7 @@ const sys = {
 
 const scripts = {
     bonusDisplayEnhancer() {
+        if (document.querySelector('[role="main"]').offsetWidth >= 784) return;
         const mode = util.getDisplayMode()
         const els = document.querySelectorAll('.bonus.left.torn-divider.divider-vertical');
         els.forEach((el) => {
