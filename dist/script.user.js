@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.3
+// @version      1.1.4
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @license      copyright Adam Auckland-Blaydes
@@ -59,14 +59,14 @@ const util = {
     }
 };
 const handlers = {
-    displayModeChange:(e)=>{
+    displayModeChange: (e) => {
         e.preventDefault();
         const was = util.getDisplayMode()
-        if(!was || was === "icon"){
+        if (!was || was === "icon") {
             util.setDisplayMode("text");
             document.getElementById("AIDS:btnEl").textContent = "Text"
             run();
-        }else{
+        } else {
             util.setDisplayMode("icon");
             document.getElementById("AIDS:btnEl").textContent = "Icon"
             run();
@@ -75,18 +75,18 @@ const handlers = {
 }
 
 const sys = {
-    addModeButton(){
+    addModeButton() {
         const existing = document.getElementById("AIDS:btnEl")
-        if(existing)return;
+        if (existing) return;
 
         const btn = document.createElement("button");
-        btn.id="AIDS:btnEl";
+        btn.id = "AIDS:btnEl";
         btn.className = "t-clear h c-pointer  m-icon line-h24 right last";
-        btn.style.width="fit-content";
-        btn.style.paddingLeft="10px";
-        btn.style.paddingRight="10px";
-        btn.style.color ="#999999";
-        btn.addEventListener("click",(e)=>handlers.displayModeChange(e));
+        btn.style.width = "fit-content";
+        btn.style.paddingLeft = "10px";
+        btn.style.paddingRight = "10px";
+        btn.style.color = "#999999";
+        btn.addEventListener("click", (e) => handlers.displayModeChange(e));
 
         const text = util.getDisplayMode()
         btn.textContent = `${text.split("")[0].toUpperCase()}${text.split("").slice(1).join("")}`;
@@ -98,7 +98,7 @@ const sys = {
 };
 
 const scripts = {
-    bonusDisplayEnhancer(){
+    bonusDisplayEnhancer() {
         const mode = util.getDisplayMode()
         const els = document.querySelectorAll('.bonus.left.torn-divider.divider-vertical');
         els.forEach((el) => {
@@ -109,33 +109,45 @@ const scripts = {
                 child => !child.classList.contains("bonus-attachment-blank-bonus-25")
             );
 
-            function textMode(clone){
+            function textMode(clone) {
+
+                clone.style.display = "flex"
+                clone.style.color = "#999999"
+
                 let text = ""
-                for(const child of clone.children){
+
+                for (const child of clone.children) {
                     console.log(child)
-                    if(!child.className.includes("bonus-attachment-blank-bonus-25")){
+                    if (!child.className.includes("bonus-attachment-blank-bonus-25")) {
                         const full = child.title
 
                         const bonus = full.split("<b>")[1].split("</b>")[0]
                         const percent = full.split("<br/>")[1].split(" ")[0]
 
-                        console.log("Bonus:",bonus)
-                        console.log("Percent:",percent)
-                        if(text!==""){text+="\n"}
-                        text = `${bonus}: ${percent}`
+                        console.log("Bonus:", bonus)
+                        console.log("Percent:", percent)
+                        if (text !== "") {
+                            text += "<br/>"
+                            const parent = el.parentElement, gp = parent.parentElement;
+                            gp.style.height = "60px"
+                            gp.children[1].style.overflow = "visible"
+                        }
+                        text += `${bonus}: ${percent}`
+
                     }
                 }
 
-                clone.textContent = text
+                //clone.textContent = "";
+                clone.innerHTML = text;
                 return clone
             }
-            function iconMode(clone){
-                let i=0
-                for(const child of clone.children){
+            function iconMode(clone) {
+                let i = 0
+                for (const child of clone.children) {
                     child.style.setProperty("transform", "scale(1.75)", "important")
                     child.style.verticalAlign = "center"
-                    if(i!==0){
-                        child.style.marginLeft="10px"
+                    if (i !== 0) {
+                        child.style.marginLeft = "10px"
                     }
                     i++
                 }
@@ -150,9 +162,9 @@ const scripts = {
                 clone.style.paddingLeft = "10px";
                 let replacement = ""
                 const mode = util.getDisplayMode();
-                if(mode==="icon"){
+                if (mode === "icon") {
                     replacement = iconMode(clone);
-                }else if(mode==="text"){
+                } else if (mode === "text") {
                     replacement = textMode(clone);
                 }
 
@@ -160,7 +172,7 @@ const scripts = {
                 const grandparent = parent.parentElement;
                 if (grandparent.children[1].children.length === 0) {
                     grandparent.children[1].append(replacement);
-                }else{
+                } else {
                     grandparent.children[1].children[0].replaceWith(replacement)
                 }
                 el.dataset.aidsProcessedMode = mode;
@@ -177,7 +189,7 @@ function run() {
     util.log("Running script");
 
     const btn = document.getElementById("AIDS:btnEl")
-    if(!btn)sys.addModeButton();
+    if (!btn) sys.addModeButton();
 
     const hash = window.location.hash;
 
