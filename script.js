@@ -161,6 +161,10 @@ const scripts = {
                         percent.style.paddingRight ="5px";
                         percent.style.paddingTop ="5px";
                         percent.style.color = getRangeColour(Number(percentText.substring(0, percentText.length - 1)),ranges[bonusText].min,ranges[bonusText].max);
+                        percent.style.setProperty("text-shadow",`-2px -2px 0 black,
+     2px -2px 0 black,
+    -2px  2px 0 black,
+     2px  2px 0 black`)
 
 
                         bonusRow.appendChild(percent);
