@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.7
+// @version      1.1.8
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @license      copyright Adam Auckland-Blaydes
@@ -155,17 +155,33 @@ const scripts = {
                         const percent = document.createElement("span");
                         percent.className = "right";
                         percent.textContent = percentText;
-                        percent.style.display = "inline-flex";
+                        percent.style.display = "inline-block";
                         percent.style.setProperty("vertical-align", "top", "important");
                         percent.style.setProperty("line-height", "normal", "important");
                         percent.style.paddingRight ="5px";
                         percent.style.paddingTop ="5px";
-                        percent.style.color = getRangeColour(Number(percentText.substring(0, percentText.length - 1)),ranges[bonusText].min,ranges[bonusText].max);
-                        percent.style.setProperty("text-shadow",`-2px -2px 0 black,
-     2px -2px 0 black,
-    -2px  2px 0 black,
-     2px  2px 0 black`)
 
+                        const col = getRangeColour(
+                            Number(percentText.substring(0, percentText.length - 1)),
+                            ranges[bonusText].min,
+                            ranges[bonusText].max
+                        );
+
+
+                        percent.style.color = col;
+
+                        percent.style.textShadow = `
+  -1px -1px 0 black,
+   1px -1px 0 black,
+  -1px  1px 0 black,
+   1px  1px 0 black,
+   0 0 2px black
+`;
+
+                        percent.style.webkitFontSmoothing = "antialiased";
+                        percent.style.mozOsxFontSmoothing = "grayscale";
+                        percent.style.transform = "translateZ(0) scale(1.01)";
+                        percent.style.backfaceVisibility = "hidden";
 
                         bonusRow.appendChild(percent);
 
