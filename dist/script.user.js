@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.1.8
+// @version      1.2.0
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @license      copyright Adam Auckland-Blaydes
@@ -133,12 +133,15 @@ const scripts = {
                         count++;
 
                         const full = child.title
+                        console.log("full");
+                        console.log(full)
 
                         const bonusText = full.split("<b>")[1].split("</b>")[0]
-                        const percentText = full.split("<br/>")[1].split(" ")[0]
+                        // old code : const percentText = full.split("<br/>")[1].split(" ")[0]
+                        const percentText = full.split("<br/>")[1].match(/\d+/g).join("")
 
-                        //console.log("Bonus:",bonusText)
-                        //console.log("Percent:",percentText);
+                        console.log("Bonus:",bonusText);
+                        console.log("Percent:",percentText);
 
                         const bonusRow = document.createElement("div");
                         bonusRow.style.position="relative"
