@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.2.2
+// @version      1.2.3
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @license      copyright Adam Auckland-Blaydes
@@ -159,33 +159,36 @@ const scripts = {
                         const percent = document.createElement("span");
                         percent.className = "right";
                         percent.textContent = `${percentText}%`;
+
                         percent.style.display = "inline-block";
-                        percent.style.setProperty("vertical-align", "top", "important");
-                        percent.style.setProperty("line-height", "normal", "important");
-                        percent.style.setProperty("--webkit-font-smoothing", "antialiased", "important");
+                        percent.style.verticalAlign = "top";
+                        percent.style.lineHeight = "normal";
+
                         percent.style.paddingRight = "5px";
                         percent.style.paddingTop = "5px";
 
                         const col = getRangeColour(
-                            Number(percentText.substring(0, percentText.length - 1)),
+                            Number(percentText.slice(0, -1)),
                             ranges[bonusText].min,
                             ranges[bonusText].max
                         );
 
-
                         percent.style.color = col;
 
+                        // ✅ real outline (WebKit + Chromium + most modern browsers)
+                        //percent.style.webkitTextStroke = "1px black";
+
+                        // optional fallback idea (non-webkit browsers)
                         percent.style.textShadow = `
   -1px -1px 0 black,
    1px -1px 0 black,
   -1px  1px 0 black,
-   1px  1px 0 black
+   1px  1px 0 black,
+   0px -1px 0 black,
+   0px  1px 0 black,
+  -1px  0px 0 black,
+   1px  0px 0 black
 `;
-
-                        percent.style.webkitFontSmoothing = "antialiased";
-                        percent.style.mozOsxFontSmoothing = "grayscale";
-                        percent.style.transform = "translateZ(0) scale(1.01)";
-                        percent.style.backfaceVisibility = "hidden";
 
                         bonusRow.appendChild(percent);
 
