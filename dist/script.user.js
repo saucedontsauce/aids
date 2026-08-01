@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Armoury Improved Display Script
 // @namespace    https://github.com/saucedontsauce/aids
-// @version      1.2.5
+// @version      1.2.6
 // @description  Torn Armoury Enhancement Tool
 // @match        https://www.torn.com/factions.php*
 // @license      copyright Adam Auckland-Blaydes
@@ -169,6 +169,9 @@ const scripts = {
                         percent.style.paddingRight = "5px";
                         percent.style.paddingTop = "5px";
 
+ const range = ranges[bonusText];
+                        if (!range) continue;
+
                         const col = getRangeColour(
                             Number(percentText.slice(0, -1)),
                             ranges[bonusText].min,
@@ -194,8 +197,7 @@ const scripts = {
 
                         bonusRow.appendChild(percent);
 
-                        const range = ranges[bonusText];
-                        if (!range) continue;
+                       
 
                         const value = Number(percentText);
                         const colour = getRangeColour(value, range.min, range.max);
